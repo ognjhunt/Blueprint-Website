@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		* {
+		//background-color: gray;
+		}
+		html, body{
+    margin:0px;
+}
+		#map {
+			height: 776px;
+			width: 100%;
+			margin-top: 45px;
+			max-width: none;
+			position: absolute;
+			z-index: -10;
+		}
+		.blackText
+    {
+        color:black;
+        font-size: 39;
+        font-weight: 575;
+    }
+    .grayText
+    {
+        color:gray;
+        font-size: 15;
+        font-weight: medium;
+    }
+		.wrap {
+		    width: 100%;
+		    height: 45px;
+		    background:  black; //  #282424;
+		    position: absolute;
+		     overflow: hidden;
+		     
+		    margin-top: 0px;
+		   // text-align: center;
+		    margin: center;
+			}
+		.switch {
+		  position: absolute;
+		  margin-left: 89%;
+		  margin-top: 763px;
+		  z-index: 10;
+		  display: inline-block;
+		  width: 60px;
+		  height: 34px;
+	//	  visibility: hidden;
+		}
+		.switch input { 
+		  opacity: 0;
+		  width: 0;
+		  height: 0;
+		}
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: #ccc;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 26px;
+		  width: 26px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: white;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		.gmnoprint img {
+    max-width: none; 
+}
+.gm-style label { width: auto; display: inline; }
+
+		input:checked + .slider {
+		  background-color: #2196F3; //#000000
+		}
+
+		input:focus + .slider {
+		  box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+		/* Rounded sliders */
+		.slider.round {
+		  border-radius: 34px;
+		}
+
+		.slider.round:before {
+		  border-radius: 50%;
+		}
+		img.leftimage {
+	   width: 45x; 
+	   height: 45px; 
+	   margin-left: 10px; 
+	   position: fixed;
+		}
+		img.rightimage {
+		   width: 40px; 
+	   	height: 40px; 
+	   	margin-left: 95%; 
+	  	 position: fixed;
+	  	 border-radius: 20px;
+	  	 padding-top: 2.5px;
+	  	 vertical-align: middle;
+	  	 align-content: center;
+		}
+		img {
+			width: 100x;
+			height: 100px;
+			margin-left: 10px;
+			position: fixed;
+			max-width: none;
+			}
+		button.home{
+	  	  margin-left: 180px;
+	  	  margin-top: 10.0px;
+	  	  position: absolute;
+	  	  height: 25px;
+	  	  width: 30px;
+	  	 background-color: black;
+	  	// background-color: #232323;
+	  	 color: whitesmoke;
+	  	 font-weight: 575;
+	  	 float:  left;
+	  	 font-size: 16px;
+	  	 outline-width: 0px;
+		border: none !important;
+		}
+		button.about{
+	  	  margin-left: 16%;
+	  	  height: 25px;
+	  	  margin-top: 10.0px;
+	  	  width: 80px;
+	  	  position: absolute;
+	  	  background-color: black;// #232323;
+	  	  color: whitesmoke;
+	  	  font-weight: bold;
+	  	  float:  right;
+	  	  font-size: 16px;
+	  	  outline-width: 0px;
+			border: none !important;
+		} 
+		button.contact{
+	  	  margin-left: 21.35%;
+	  	  height: 25px;
+	  	  margin-top: 10.0px;
+	  	  width: 90px;
+	  	  position: absolute;
+	  	  background-color: black;// #232323;
+	  	  color: whitesmoke;
+	  	  font-weight: bold;
+	  	  float:  right;
+	  	  font-size: 16px;
+	  	  outline-width: 0px;
+			border: none !important;
+		}   
+		button{
+	  	  margin-left: 71.5%; // 83%;
+	  	  height: 35px;
+	  	  margin-top: 5px;
+	  	  width: 110px;
+	  	  position: absolute;
+	  	  background-color: darkorange;// black;// #232323;
+	  	  border-radius: 6px;
+	  	  color: whitesmoke;
+	  	  font-weight: bold;
+	  	  float:  right;
+	  	  font-size: 14px;
+	  	  outline-width: 0px;
+		border: none !important;
+		}    
+		button.upload{
+	  	  margin-left: 85.5%; // 83%;
+	  	  height: 35px;
+	  	  margin-top: 5px;
+	  	  width: 110px;
+	  	  position: absolute;
+	  	  background-color: darkorange;// black;// #232323;
+	  	  border-radius: 6px;
+	  	  color: whitesmoke;
+	  	  font-weight: bold;
+	  	  float:  right;
+	  	  font-size: 14px;
+	  	  outline-width: 0px;
+		border: none !important;
+		}
+		button.panbutton{
+	  	 // margin-left: 83%;
+	  	  height: 40px;
+	  	//  margin-top: 10.0px;
+	  	  //width: 20px;
+	  	  position: absolute;
+	  	  background-color: hotpink;// #232323;
+	  	  color: black;
+	  	  font-weight: bold;
+	  	  font-size: 16px;
+		}
+		button.addButton {
+			/*margin-top: 32px;
+			margin-right: 20px;*/
+			margin-top: 76.5px;
+			margin-right: 20px;
+			text-align: center;
+			position: absolute;
+			vertical-align: middle;
+/*			background-color: #2196F3;
+*/			background-color: whitesmoke;
+			font-size: 30px;
+			box-shadow: 2px 3px 9px #595959;
+		//	pointer-events: none;
+		//	cursor: not-allowed;
+			border-radius: 7px;
+			z-index: 11;
+			outline-width: 0px;
+			border: none !important;
+		}
+		label.info {
+			margin-top: 300px;
+			margin-right: 450px;
+			margin-left: 450px;
+			text-align: center;
+			position: absolute;
+			vertical-align: middle;
+			color:  whitesmoke;
+/*			background-color: #2196F3;
+*/			
+
+			font-size: 45px;
+			font-weight: bold;
+
+		//	box-shadow: 2px 3px 9px #595959;
+		//	pointer-events: none;
+		//	cursor: not-allowed;
+		//	border-radius: 7px;
+			z-index: 51;
+			outline-width: 0px;
+
+			border: none !important;
+		}
+
+		tr:hover {
+  	background-color: lightyellow;
+		}
+	</style>
+</head>
+<body>
+
+<div id = "map"></div>
+
+<input type="text"required id="autocomplete" placeholder="Search here" style="height: 45px; width: 340px; background-color: whitesmoke; position: absolute; z-index: 2; margin-left: 10px; outline-width: 0px; outline-color: whitesmoke; margin-top: 75px; border: none !important; padding-left: 20px; padding-right: 15px; box-shadow: 2px 3px 9px #595959; font-size: 15px; border-radius: 9px;">
+
+<input type="number"required id="autocomplete" placeholder="Latitude" style="height: 40px; width: 150px; background-color: whitesmoke; position: absolute; z-index: 4; margin-left: 85%; outline-width: 0px; outline-color: whitesmoke; margin-top: 77.5px; border: none !important; padding-left: 20px; padding-right: 15px; box-shadow: 2px 3px 9px #595959; font-size: 15px; border-radius: 9px;">
+
+<input type="number"required id="autocomplete" placeholder="Longitude" style="height: 40px; width: 150px; background-color: whitesmoke; position: absolute; z-index: 4; margin-left: 85%; outline-width: 0px; outline-color: whitesmoke; margin-top: 137.5px; border: none !important; padding-left: 20px; padding-right: 15px; box-shadow: 2px 3px 9px #595959; font-size: 15px; border-radius: 9px;">
+
+<input type="number"required id="autocomplete" placeholder="Altitude (optional)" style="height: 40px; width: 150px; background-color: whitesmoke; position: absolute; z-index: 4; margin-left: 85%; outline-width: 0px; outline-color: whitesmoke; margin-top: 197.5px; border: none !important; padding-left: 20px; padding-right: 15px; box-shadow: 2px 3px 9px #595959; font-size: 15px; border-radius: 9px;">
+
+<input type="number"required id="autocomplete" placeholder="Heading (optional)" style="height: 40px; width: 150px; background-color: whitesmoke; position: absolute; z-index: 4; margin-left: 85%; outline-width: 0px; outline-color: whitesmoke; margin-top: 257.5px; border: none !important; padding-left: 20px; padding-right: 15px; box-shadow: 2px 3px 9px #595959; font-size: 15px; border-radius: 9px;">
+
+<button class="addButton" id = "addButton" style="position: absolute; height: 45px; width : 110px; color: #686464; font-size: 17; font-weight: 575;">+</button> 
+
+<label class="info" id="labelInfo">Start editing the world. Search anywhere and place digital content.</label>
+
+<label class="switch">
+  <input type="checkbox" checked>
+  <span class="slider round"></span>
+</label>
+
+<!-- <div class="alert alert-success hide">Form submitted successfully</div> -->
+  <div class="alert alert-success alert-dismissible" id = "successAlert" hidden = "true" style = "color: darkgreen; background-color: #e0f4dc; vertical-align: middle; height: 50px; width: 60%; line-height: 50px; border-radius: 6px; margin-left: 20%; font-size: 16px; margin-top: 52px; position: absolute; z-index: 21;">
+  	<strong style="padding-left: 20px">Success!</strong> Any Blueprint user can now see your contribution.
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="padding-left: 445px">&times;</a>
+  </div>
+
+<div class="wrap"> 
+	<img src="file:///Users/nijelhunt/Desktop/Screen%20Shot%202022-06-13%20at%2010.54.25%20AM.png" class="leftimage"/>
+    <button class="home">Map</button> 
+    <button class="about">About</button> 
+    <button class="contact">Contact</button> 
+    <button class="upload">UPLOAD</button> 
+    <img src="file:///Users/nijelhunt/Desktop/meandryan.jpeg" class="rightimage"/>
+</div>
+
+<table id = "myTable" cellspacing="0" hidden = "true" cellpadding="0" border="0" width="300" style="padding-top:160px; margin-left:1100px;">
+  <tr>
+    <td>
+       <table cellspacing="0" cellpadding="1" height = "65" width="300" >
+         <tr style="color:black;background-color: #b9b9b9; font-size: 22px; font-weight: 600; border-radius: 15px 50px 30px 5px;">
+            <th style="border-top-left-radius: 15px; border-top-left-radius: 15px; border-top-right-radius: 15px;">Uploaded Content</th>
+         </tr>
+       </table>
+    </td>
+  </tr>
+  <tr>
+    <td>
+       <div style="width:300px; height:380px; align: center; background-color: #f8f8f8; z-index: 33; position: fixed; border-bottom-right-radius: 15px; box-shadow: 4px 5px 8px black; border-bottom-left-radius: 15px; overflow:auto;">
+         <table cellspacing="0" cellpadding="10" border="0" height = "280" width="300" >
+           <tr>
+             <td id = "cell1" style="border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/newtet.png" alt="" height=100 width=100 style="border-radius: 50%; z-index: 33; position: static; border: 1px solid #555; vertical-align: middle; margin:0px 5px"></img><span class="blackText" style="font-size: 19px">    ARTetris</span>&nbsp;<span class="grayText">(21MB)</span></th> 
+           </tr> 
+              <tr>
+             <td style="border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/Blueprint%20AR/DecorateYourRoom/DecorateYourRoom/Assets.xcassets/herakles.imageset/herakles.jpg" alt="" height=100 width=100 style="border-radius: 50%; position: static; border: 1px solid #555; vertical-align: middle; margin:0px 5px"></img><span class="blackText" style="font-size: 19px">    Herakles</span>&nbsp;<span class="grayText">(14MB)</span></th> 
+           </tr> 
+         
+           <tr>
+             <td style="border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/Screen%20Shot%202022-06-24%20at%2012.28.41%20PM.png" alt="" height=100 width=100 style="border-radius: 50%; border: 1px solid #555; position: static; vertical-align: middle; margin:0px 5px"></img><span class="blackText" style="font-size: 19px">    26 St. Albans</span>&nbsp;<span class="grayText">(5MB)</span></th> 
+           </tr> 
+           <tr>
+             <td style=" border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/ttt.png" alt="" height=100 width=100 style="border-radius: 50%; position: static; border: 1px solid #555; vertical-align: middle; margin:0px 5px"></img> <span class="blackText" style="font-size: 19px">    Tic-Tac-Toe</span>&nbsp;<span class="grayText">(32MB)</span></th> 
+           </tr> 
+           <tr>
+             <td style="border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/Screen%20Shot%202022-06-22%20at%2011.38.02%20AM.png" alt="" height=100 width=100 style="border-radius: 50%; position: static; border: 1px solid #555; vertical-align: middle; margin:0px 5px"></img><span class="blackText" style="font-size: 19px">    Northeastern</span>&nbsp;<span class="grayText">(17MB)</span></th> 
+           </tr> 
+             <tr>
+             <td style="border-bottom: 1px solid gray; word-wrap:break-word;"><img src="file:///Users/nijelhunt/Desktop/monetparasol.jpeg" alt="" height=100 width=100 style="border-radius: 50%; border: 1px solid #555; position: static; vertical-align: middle; margin:0px 5px"></img><span class="blackText" style="font-size: 19px">    Monet</span>&nbsp;<span class="grayText">(9MB)</span></th> 
+           </tr> 
+         </table>  
+       </div>
+    </td>
+  </tr>
+</table>
+
+<script>
+	function initMap() {
+		var location = {lat: 35.2145, lng: -35.1945}; //{lat: 42.360, lng: -71.058};
+		var map = new google.maps.Map(document.getElementById("map"), {
+			zoom: 3.1,// 3.4, 
+			minZoom: 2.1,
+			center: location,
+			mapTypeId: google.maps.MapTypeId.HYBRID,
+			disableDefaultUI: true,
+			zoomControl: true,
+			streetViewControl: true
+		});
+		//map.setTilt(45);
+		const geocoder = new google.maps.Geocoder();
+
+	 	const input = document.querySelector("input");
+		input.addEventListener("keyup", (event) => {
+		  if (event.key === "Enter") {
+		    console.log('Enter key pressed')
+		//    document.getElementById("autocomplete").hidden = true;
+		    searchAddress(); 
+		    console.log(map.getZoom());
+		  }
+		});
+		
+		infoWindow = new google.maps.InfoWindow();
+
+		const addButton = document.createElement("addButton");
+		addButton.textContent = "";
+		addButton.style.height = '40px';
+		addButton.style.position = "absolute";
+		addButton.style.width = '100px'; 
+		addButton.classList = "addButton";
+		addButton.addEventListener("click", showTable);
+				document.getElementById("addButton").addEventListener("click", showTable);
+
+
+		map.controls[google.maps.ControlPosition.TOP_RIGHT].push(addButton);
+
+		google.maps.event.addListener(map, 'mousemove', function (event) {
+              displayCoordinates(event.latLng);               
+          });
+
+  	    	var delayInMilliseconds = 1750; //1 second
+
+		if (document.addEventListener) {
+  // document.addEventListener('contextmenu', function(e) {
+  // 	confirm("Place '26 St. Albans' at this location?");
+  // 	    e.preventDefault();
+
+
+		// setTimeout(function() {
+		//   document.getElementById("successAlert").hidden = false;
+		// }, delayInMilliseconds);
+  	    
+  // //alert("Button clicked successfully !");  
+  //   //  submit()
+
+  // }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    alert("You've tried to open context menu");
+    window.event.returnValue = false;
+  });
+}
+
+	  const locationButton = document.createElement("panbutton");
+	  locationButton.textContent = "Pan to Current Location";
+	  locationButton.classList.add("custom-map-control-button");
+	  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
+	  locationButton.addEventListener("click", () => {
+	    // Try HTML5 geolocation.
+	    if (navigator.geolocation) {
+	      navigator.geolocation.getCurrentPosition(
+	        (position) => {
+	          const pos = {
+	            lat: position.coords.latitude,
+	            lng: position.coords.longitude,
+	          };
+
+	          infoWindow.setPosition(pos);
+	          infoWindow.setContent("Location found.");
+	          infoWindow.open(map);
+	          map.setCenter(pos);
+	        },
+	        () => {
+	          handleLocationError(true, infoWindow, map.getCenter());
+	        }
+	      );
+	    } else {
+	      // Browser doesn't support Geolocation
+	      handleLocationError(false, infoWindow, map.getCenter());
+	    }
+	  });
+	  initAutocomplete();
+		}
+	//window.initMap = initMap;
+
+var showTableCount = 0
+
+
+	function showTable() {
+  console.log("add button pressed");
+  showTableCount++;
+  if (showTableCount % 2) {
+  	document.getElementById("myTable").hidden = false
+  	const cells = document.querySelectorAll('td');
+		for (var i = 0; i < cells.length; i++) {
+		  cells[i].addEventListener('click', function (event) {    
+		    var rows = document.getElementById('myTable').rows;
+    for(var i = 0; i < rows.length; i++) {
+        rows[i].style.backgroundColor = '';
+    }
+    // set background of clicked row
+    this.style.backgroundColor = 'lightyellow';
+		  });
+		}
+		console.log("table showing");
+  } else {
+		document.getElementById("myTable").hidden = true
+		console.log("table hiding");
+  }
+  console.log(showTableCount);
+}
+
+	function showAlert(){
+		if (confirm('Are you sure you want to save this thing into the database?')) {
+  // Save it!
+  console.log('Thing was saved to the database.');
+} else {
+  // Do nothing!
+  console.log('Thing was not saved to the database.');
+}
+	}
+
+
+	function submit(){
+            $('.alert-success').show();
+        }
+
+	function displayCoordinates(pnt) {
+
+          var lat = pnt.lat();
+          lat = lat.toFixed(4);
+          var lng = pnt.lng();
+          lng = lng.toFixed(4);
+          console.log("Latitude: " + lat + "  Longitude: " + lng);
+      }
+
+	function initAutocomplete() {
+		new google.maps.places.Autocomplete(
+		      (document.getElementById('autocomplete')),
+		      {types: ['geocode']}
+		); //get address
+		}
+
+		function geocodeAddress(geocoder, resultsMap) {
+		    var address = document.getElementById('address').value;
+		    geocoder.geocode({'address': address}, function(results, status) {
+		      if (status === 'OK') {
+		        resultsMap.setCenter(results[0].geometry.location);
+		        
+		        var marker = new google.maps.Marker({
+		          map: resultsMap,
+		          position: results[0].geometry.location,
+		        });
+		      } else {
+		        alert('Geocode was not successful for the following reason: ' + status);
+		      }
+		    });
+		  }
+
+	
+	
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		  infoWindow.setPosition(pos);
+		  infoWindow.setContent(
+		    browserHasGeolocation
+		      ? "Error: The Geolocation service failed."
+		      : "Error: Your browser doesn't support geolocation."
+		  );
+		  infoWindow.open(map);
+		}
+
+
+window.initMap = initMap;
+</script>
+
+<script>
+	//var address = ""
+	function searchAddress(){
+		  var geocoder = new google.maps.Geocoder();
+          var address = "26 Saint Albans Rd, Boston, Massachussettes 02115";
+          
+      
+          geocoder.geocode({'address': address}, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                  var latitude = results[0].geometry.location.lat();
+                  var longitude = results[0].geometry.location.lng();
+                  console.log(latitude + " " + longitude);
+            			document.getElementById("labelInfo").hidden = true
+                  var svService = new google.maps.StreetViewService();
+                  var panoRequest = {
+                      location: results[0].geometry.location,
+                      preference: google.maps.StreetViewPreference.NEAREST,
+                      radius: 50,
+                      source: google.maps.StreetViewSource.OUTDOOR
+                  };
+                
+                  var findPanorama = function(radius) {
+                      panoRequest.radius = radius;
+                      svService.getPanorama(panoRequest, function(panoData, status){
+                          if (status === google.maps.StreetViewStatus.OK) {
+                              var panorama = new google.maps.StreetViewPanorama(
+                                  document.getElementById('map'),
+                                  {
+                                      pano: panoData.location.pano,
+                                      disableDefaultUI: true, //get rotate control
+                                      rotateControl: true,
+                                      zoomControl: true,
+                                      pov: {
+								        heading: 90,
+								        pitch: 0,
+								        zoom: 0.5,
+								      }
+                                  //    minZoom: 4,
+                                  });
+                              visible: true;
+                  //            google.maps.event.trigger(map, "resize");
+						        console.log(panorama.position);
+						        console.log(panorama.pov);
+						      //  var col = document.getElementById("addButton")
+								  //      col.style.backgroundColor = '#232323'
+								 //       col.style.color = '#b8b4b4'
+                          } else {
+                              //Handle other statuses here
+                              if (radius > 200) {
+                                  alert("Street View is not available");  
+                              } else {
+                                  findPanorama(radius + 5);
+                              }
+                          }
+                      });     
+                  };
+                  findPanorama(50);
+              }
+          });
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgxzzgcT_9nyhz1D_JtfG7gevRUKQ5Vbs&libraries=places&callback=initMap"
+                async defer></script>
+</body>
+</html
