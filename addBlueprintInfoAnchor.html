@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Firebase Form</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <p>Name:</p>
+
+      <input type="text" placeholder="Name" id="name" />
+
+      <p>placeId:</p>
+
+      <input type="text" placeholder="placeId"id="placeId" />
+
+      <p>contentType:</p>
+
+      <input type="text" value="information" id="contentType" />
+
+      <p>Host:</p>
+
+      <input type="text" value="1zMDe5Raoee3At3jjFdjVVRqbIt2" id="host" />
+
+      <p>latitude:</p>
+
+      <input type="text" placeholder="latitude" id="latitude" />
+
+      <p>longitude:</p>
+
+      <input type="text" placeholder="longitude" id="longitude" />
+
+      <p>altitude:</p>
+
+      <input type="number" value=0 id="altitude" />
+
+      <p>heading:</p>
+
+      <input type="number" value=0 id="heading" />
+
+      <p>comments:</p>
+
+      <input type="number" value=0 id="comments" />
+
+      <p>likes:</p>
+
+      <input type="number" value=0 id="likes" />
+
+      <p>interactionCount:</p>
+
+      <input type="number" value=0 id="interactionCount" />
+
+      <p>Description:</p>
+
+      <input type="text" placeholder="Description" id="description" />
+
+      <p>Geohash:</p>
+
+      <input type="text" placeholder="geohash" id="geohash" />
+
+      <p>id:</p>
+
+      <input type="text" placeholder="description" id="id" />
+
+      <p>placeType:</p>
+
+      <input type="text" placeholder="placeType" id="placeType" />
+
+      <br /><br />
+      <input type="submit" value="submit" class="submit" id="submit" />
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        // Initialize Firebase
+        var config = {
+          apiKey: 'AIzaSyCcoKWqEBnGDgRyz79uAqpZwIdqpw8cntM',
+          databaseURL: 'https://blueprint-8c1ca-default-rtdb.firebaseio.com/',
+          projectId: 'blueprint-8c1ca'
+        };
+
+        firebase.initializeApp(config);
+
+        var database = firebase.firestore();
+
+        $('#submit').on('click', function() {
+          var nameValue = $('#name').val();
+          var contentTypeValue = $('#contentType').val();
+          var placeIdValue = $('#placeId').val();
+          var hostValue = $('#host').val();
+          var latitudeValue = parseFloat($('#latitude').val());
+          var longitudeValue = parseFloat($('#longitude').val());
+          var altitudeValue = parseFloat($('#altitude').val());
+          var headingValue = parseFloat($('#heading').val());
+          var commentsValue = parseInt($('#comments').val());
+          var likesValue = parseInt($('#likes').val());
+          var interactionCountValue = parseInt($('#interactionCount').val());
+          var descriptionValue = $('#description').val();
+          var geohashValue = $('#geohash').val();
+          var idValue = $('#id').val();
+          var placeTypeValue = $('#placeType').val();
+
+          var dataObject = {
+            name: nameValue,
+            contentType: contentTypeValue,
+            placeId: placeIdValue,
+            host: hostValue,
+            latitude: latitudeValue,
+            longitude: longitudeValue,
+            altitude: altitudeValue,
+            heading: headingValue,
+            comments: commentsValue,
+            likes: likesValue,
+            interactionCount: interactionCountValue,
+            description: descriptionValue,
+            geohash: geohashValue,
+            id: idValue,
+            placeType: placeTypeValue
+          };
+
+          database.collection('anchors').add(dataObject);
+        });
+      });
+    </script>
+  </body>
+</html>
